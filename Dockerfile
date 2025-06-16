@@ -27,12 +27,23 @@ FROM ubuntu:noble AS production
 ARG DOCKER_WORKDIR
 WORKDIR ${DOCKER_WORKDIR}
 
+# Use bash as default shell instead of sh
+ENV SHELL=/bin/bash
+
+# Set up JupyterLab user
+ENV NB_USER=jovyan
+ENV NB_UID=1000
+# RUN adduser --disabled-password --gecos "Default Jupyter user" ${NB_USER}
+RUN useradd --create-home --comment "Default Jupyter user" --shell ${SHELL} ${NB_USER}
+
 # Copy environment and activation script from build stage
-COPY --from=build ${DOCKER_WORKDIR}/.pixi/envs/default ./.pixi/envs/default
-COPY --from=build --chmod=0755 /entrypoint.sh /entrypoint.sh
+COPY --from=build --chown=${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}/.pixi/envs/default ./.pixi/envs/default
+COPY --from=build --chown=${NB_UID}:${NB_UID} --chmod=0755 /entrypoint.sh /entrypoint.sh
 
 # Don't buffer Python stdout/stderr output
 ENV PYTHONBUFFERED=1
+
+USER ${NB_USER}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
