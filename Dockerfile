@@ -46,4 +46,4 @@ ENV PYTHONBUFFERED=1
 USER ${NB_USER}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
+CMD ["jupyter", "lab", "--ip", "0.0.0.0"]
