@@ -43,4 +43,10 @@ jobs:
           password: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: "Push to image registry"
-        run: "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+        run: |
+          docker push ${IMAGE_NAME}:${IMAGE_TAG}
+
+          # Re-tag with commit sha and push
+          SHA=$(echo "${GITHUB_SHA}" | cut -c1-12)
+          docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:${SHA}
+          docker push ${IMAGE_NAME}:${SHA}
