@@ -46,4 +46,5 @@ ENV PYTHONBUFFERED=1
 USER ${NB_USER}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD ["jupyter", "lab", "--ip", "0.0.0.0"]
+EXPOSE 8888
+CMD ["jupyter", "lab", "--no-browser", "--ip=0.0.0.0"]
