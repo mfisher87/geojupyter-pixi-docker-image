@@ -5,7 +5,7 @@ ARG DOCKER_WORKDIR=/workdir
 # -----------------------------------------------------------------------------
 # Build stage: Build pixi environment, create activation script
 # -----------------------------------------------------------------------------
-FROM ghcr.io/prefix-dev/pixi:latest AS build
+FROM ghcr.io/prefix-dev/pixi:noble AS build
 ARG DOCKER_WORKDIR
 WORKDIR ${DOCKER_WORKDIR}
 
@@ -23,7 +23,7 @@ RUN echo 'exec "$@"' >> /entrypoint.sh
 # -----------------------------------------------------------------------------
 # Production stage: Copy over Pixi environment & activation script, set up env
 # -----------------------------------------------------------------------------
-FROM ubuntu:24.04 AS production
+FROM ubuntu:noble AS production
 ARG DOCKER_WORKDIR
 WORKDIR ${DOCKER_WORKDIR}
 
