@@ -1,0 +1,46 @@
+name: "Build"
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+*"
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: "ubuntu-latest"
+    permissions:
+      packages: "write"
+    env:
+      IMAGE_NAME: "ghcr.io/mfisher87/geojupyter-pixi"
+      # GitHub Actions expressions conditionals are ternary expressions that
+      # look a lot like bash. In Python, this would read as:
+      #
+      #     github.ref_name if github.ref_type == 'tag' else 'latest'
+      #
+      # https://docs.github.com/en/actions/learn-github-actions/expressions
+      IMAGE_TAG: "${{ github.ref_type == 'tag' && github.ref_name || 'latest' }}"
+
+    steps:
+      - uses: "actions/checkout@v3"
+
+      - name: "Check version"
+        if: "github.ref_type == 'tag'"
+        run: |
+          source .env
+          test ${{ github.ref_name }} = ${VERSION}
+
+      - name: "Build"
+        run: "docker build . -t ${IMAGE_NAME}:${IMAGE_TAG}"
+
+      - name: "GHCR login"
+        uses: "docker/login-action@v2"
+        with:
+          registry: "ghcr.io"
+          username: "${{ github.repository_owner }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: "Push to image registry"
+        run: "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
