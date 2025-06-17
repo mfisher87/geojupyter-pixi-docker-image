@@ -43,7 +43,7 @@ RUN echo 'exec "$@"' >> ${ENTRYPOINT_SCRIPT}
 RUN chmod +x ${ENTRYPOINT_SCRIPT}
 
 # Set up workdir to be editable by the notebook user
-RUN chown ${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}
+RUN chown -R ${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}
 
 USER ${NB_USER}
 WORKDIR "/home/${NB_USER}"
