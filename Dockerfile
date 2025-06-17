@@ -12,7 +12,8 @@ ENV NB_USER=jovyan
 ENV NB_UID=1000
 ENV USER="${NB_USER}"
 ENV HOME="/home/${NB_USER}"
-RUN groupadd \
+RUN userdel ubuntu \
+ && groupadd \
   --gid ${NB_UID} \
   ${NB_USER} \
  && useradd \
