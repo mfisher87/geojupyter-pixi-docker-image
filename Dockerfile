@@ -1,4 +1,5 @@
 FROM ghcr.io/prefix-dev/pixi:noble AS build
+LABEL "org.opencontainers.image.description"="A pixi-based Docker image for a robust GeoJupyter environment"
 
 # Use bash as default shell instead of sh
 ENV SHELL=/bin/bash
