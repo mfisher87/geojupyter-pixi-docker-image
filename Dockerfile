@@ -43,5 +43,5 @@ RUN chmod +x ${ENTRYPOINT_SCRIPT}
 USER ${NB_USER}
 
 EXPOSE 8888
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["jupyter", "lab", "--no-browser", "--ip=0.0.0.0"]
