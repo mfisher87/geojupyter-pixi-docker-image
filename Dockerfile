@@ -28,22 +28,22 @@ RUN userdel ubuntu \
 
 ENV DOCKER_WORKDIR=/workdir
 WORKDIR ${DOCKER_WORKDIR}
+RUN chown ${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}
 
 # Build the environment
+USER ${NB_USER}
 COPY pixi.toml .
 RUN pixi install \
  && rm -rf ~/.cache/rattler
 
 # Set up shell activation script
+RUN pixi shell-hook -s bash > ./shell-hook
+USER root
 ENV ENTRYPOINT_SCRIPT="/entrypoint.sh"
-RUN pixi shell-hook -s bash > /shell-hook
 RUN echo "#!/bin/bash" > ${ENTRYPOINT_SCRIPT}
-RUN cat /shell-hook >> ${ENTRYPOINT_SCRIPT}
+RUN cat ${PWD}/shell-hook >> ${ENTRYPOINT_SCRIPT}
 RUN echo 'exec "$@"' >> ${ENTRYPOINT_SCRIPT}
 RUN chmod +x ${ENTRYPOINT_SCRIPT}
-
-# Set up workdir to be editable by the notebook user
-RUN chown -R ${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}
 
 USER ${NB_USER}
 WORKDIR "/home/${NB_USER}"
