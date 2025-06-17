@@ -42,8 +42,10 @@ RUN cat /shell-hook >> ${ENTRYPOINT_SCRIPT}
 RUN echo 'exec "$@"' >> ${ENTRYPOINT_SCRIPT}
 RUN chmod +x ${ENTRYPOINT_SCRIPT}
 
-USER ${NB_USER}
+# Set up workdir to be editable by the notebook user
+RUN chown ${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}
 
+USER ${NB_USER}
 WORKDIR "/home/${NB_USER}"
 EXPOSE 8888
 ENTRYPOINT ["/entrypoint.sh"]
