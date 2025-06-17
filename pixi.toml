@@ -9,6 +9,7 @@ version = "0.1.0"
 
 [dependencies]
 python = ">=3.12"
+jupyterhub-singleuser = "*"
 jupyterlab = ">=4.4.2"
 jupyterlab-favorites = "*"
 jupyter-collaboration = "*"
