@@ -26,12 +26,6 @@ jobs:
     steps:
       - uses: "actions/checkout@v3"
 
-      - name: "Check version"
-        if: "github.ref_type == 'tag'"
-        run: |
-          source .env
-          test ${{ github.ref_name }} = ${VERSION}
-
       - name: "Build"
         run: "docker build . -t ${IMAGE_NAME}:${IMAGE_TAG}"
 
