@@ -214,10 +214,10 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/jupyter_server_terminals-0.5.3-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/jupyter_server_ydoc-1.1.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/jupyter_ydoc-3.0.5-pyhe01879c_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-0.5.0-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-core-0.5.0-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-lab-0.5.0-pyhd8ed1ab_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-qgis-0.5.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-0.9.2-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-core-0.9.2-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-lab-0.9.2-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-qgis-0.9.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/jupyterhub-base-5.3.0-pyhda7c55b_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/jupyterhub-singleuser-5.3.0-h4422900_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/jupyterlab-4.4.3-pyhd8ed1ab_0.conda
@@ -3124,9 +3124,9 @@ packages:
   license_family: BSD
   size: 99735
   timestamp: 1746667570905
-- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-0.5.0-pyhd8ed1ab_0.conda
-  sha256: a06134695b0771809b45b9976988afc71e32973b7e88e8f7ccaa1c85988bf933
-  md5: 659dec5ae5fc9f32825734857601cd94
+- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-0.9.2-pyhd8ed1ab_0.conda
+  sha256: cbff3b79db7edf00448391aaa8e8290b39514dd390091898ce4d0b28b2432d2c
+  md5: d6889e9a28ba06ae5edd327456e48a2a
   depends:
   - jupyter-collaboration >=3,<4
   - jupyter-collaboration-ui >=1,<2
@@ -3138,44 +3138,45 @@ packages:
   - jupyterlab >=4.3,<5
   - python >=3.10
   constrains:
-  - jupytergis-core =0.5.0
-  - jupytergis-lab =0.5.0
-  - jupytergis-qgis =0.5.0
+  - jupytergis-lab =0.9.2
+  - jupytergis-qgis =0.9.2
+  - jupytergis-core =0.9.2
   license: BSD-3-Clause
   license_family: BSD
-  size: 11457
-  timestamp: 1746672208758
-- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-core-0.5.0-pyhd8ed1ab_0.conda
-  sha256: c2740ecc784eb93bfc8e0a24a3efda158155c265990d66eced2dbc2bbe49b365
-  md5: 0e87c018d9bade83c12d7562b2d7679e
+  size: 11456
+  timestamp: 1757081209697
+- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-core-0.9.2-pyhd8ed1ab_0.conda
+  sha256: 38152a39decb8e14cb6b93fd7146ba06719f1715eef71646002f5b88bd5ca6bd
+  md5: 15fce2b55984f01830af02b4e4068681
   depends:
   - jupyter_ydoc >=2,<4
   - python >=3.10
   license: BSD-3-Clause
   license_family: BSD
-  size: 21824633
-  timestamp: 1746672076413
-- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-lab-0.5.0-pyhd8ed1ab_0.conda
-  sha256: 5c4e352de1fb06b7d6aa1a45ccc5a0bda34ce624722fd039970bddf2e4dddc4e
-  md5: 757659f01ce278daad04f7ed99a94de5
+  size: 21996347
+  timestamp: 1757081127213
+- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-lab-0.9.2-pyhd8ed1ab_0.conda
+  sha256: e3531ed4bb2fbddde99d896c2b30e193c9e39f0f0b9fd63b72fbb3abe72554ee
+  md5: 8979c13e12f613139acd98579e49a842
   depends:
   - comm >=0.1.2,<0.2
   - jupyter_ydoc >=2,<4
   - jupytergis-core
   - pydantic >=2,<3
   - python >=3.10
+  - requests
   - sidecar >=0.7.0
   - yjs-widgets >=0.4,<0.5
   - ypywidgets >=0.9.0,<0.10
   constrains:
-  - jupytergis-core =0.5.0
+  - jupytergis-core =0.9.2
   license: BSD-3-Clause
   license_family: BSD
-  size: 37818
-  timestamp: 1746672133688
-- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-qgis-0.5.0-pyhd8ed1ab_0.conda
-  sha256: e3307fa7655015eb42517f3567e65fbebf8a4bcc5292284e5842746bc02b3d56
-  md5: 69c0b5a5175cff3ebe32eb7b75291c9c
+  size: 41006
+  timestamp: 1757081165469
+- conda: https://conda.anaconda.org/conda-forge/noarch/jupytergis-qgis-0.9.2-pyhd8ed1ab_0.conda
+  sha256: c2c689be43be16586afa8c277f27aefc20768f3882921f10c94a5302ad084e2a
+  md5: 97b2e8b5382e6dc29d7d68873afef3f5
   depends:
   - jupyter_server >=2.0.1,<3
   - jupyter_ydoc >=2,<4
@@ -3183,13 +3184,13 @@ packages:
   - jupytergis-lab
   - python >=3.10
   constrains:
-  - jupytergis-core =0.5.0
-  - jupytergis-lab =0.5.0
+  - jupytergis-lab =0.9.2
   - jupyterlab >=4,<5
+  - jupytergis-core =0.9.2
   license: BSD-3-Clause
   license_family: BSD
-  size: 39246
-  timestamp: 1746672187135
+  size: 39411
+  timestamp: 1757081197355
 - conda: https://conda.anaconda.org/conda-forge/noarch/jupyterhub-base-5.3.0-pyhda7c55b_0.conda
   sha256: 65a0eeb2fdf35248582e28e1db332367020f85dd554315d84bd4e4ec0016672a
   md5: 2a47623cd374e67413707b9925908313
