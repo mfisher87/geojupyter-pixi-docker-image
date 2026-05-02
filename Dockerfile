@@ -32,6 +32,7 @@ RUN chown ${NB_UID}:${NB_UID} ${DOCKER_WORKDIR}
 
 # Build the environment
 USER ${NB_USER}
+# TODO: Use pixi.lock instead of pixi.toml!?
 COPY pixi.toml .
 RUN pixi install \
  && rm -rf ~/.cache/rattler
